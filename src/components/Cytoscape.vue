@@ -339,7 +339,7 @@ export default {
           ]
         },
         layout: {
-          name: 'grid', // 用哪种方式排列，可选：breadthfirst(广度优先)、cose(缝制)、preset(预设)、circle(圆形)、grid(矩形)
+          name: 'cose', // 用哪种方式排列，可选：breadthfirst(广度优先)、cose(缝制)、preset(预设)、circle(圆形)、grid(矩形)
           idealEdgeLength: 100,
           nodeOverlap: 20,
           refresh: 20,
@@ -401,10 +401,12 @@ export default {
         c.removeClass("nodeHover")
         _this.$cy.collection("edge").removeClass("edgeActive")
       })
+      //设置点击事件
       this.$cy.on("click", "node", function (ele) {
         let c = ele.target
         c.removeClass("nodeActive")
         _this.$cy.collection("edge").removeClass("edgeActive")
+        console.log('c.data',c.data().id)
         _this.info = 'id：' + c.data('id') + '；name：' + c.data('name') + '；type：' + c.data('type')
       })
       // 监听鼠标按下左键
@@ -478,7 +480,7 @@ export default {
             //   enabled: true, // 启用/禁用
             // },
             {
-              // fillColor: 'rgba(200, 200, 200, 0.75)', 
+              // fillColor: 'rgba(200, 200, 200, 0.75)',
               content: '<span>隐藏</span>',
               // contentStyle: {},
               select: (ele) => {
@@ -578,12 +580,15 @@ export default {
 
 <style>
 .cy-container {
-  width: 100%;
-  height: 100%;
+  /*//设置为100%导致画面刷新异常*/
+  /*//设置为100%导致画面刷新异常*/
+  width: 100vw;
+  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
+  background-color: antiquewhite;
 }
 .cy-container .cy {
   width: 100%;
